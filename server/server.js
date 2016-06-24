@@ -36,9 +36,42 @@ function handleRender(req, res) {
     // const params = qs.parse(req.query);
     //
     // const counter = parseInt(params.counter, 10) || apiResult || 0;
-
+    const videos  = [
+{
+kind: "youtube#searchResult",
+etag: "'5g01s4-wS2b4VpScndqCYc5Y-8k/MnJ0eyS5rPdhmO-Q8dxraaCXdj8'",
+id: {
+kind: "youtube#video",
+videoId: "Eg86emJjbwk"
+},
+snippet: {
+publishedAt: "2016-06-21T16:30:00.000Z",
+channelId: "UCPDis9pjXuqyI7RYLJ-TTSA",
+title: "Dummy Dogs || 'Dog Fails' By FailArmy",
+description: "There's nothing funnier than seeing a man's best friend fail. They're always there for us, they love us, but sometimes they're not the smartest. Here are some of ...",
+thumbnails: {
+default: {
+url: "https://i.ytimg.com/vi/Eg86emJjbwk/default.jpg",
+width: 120,
+height: 90
+},
+medium: {
+url: "https://i.ytimg.com/vi/Eg86emJjbwk/mqdefault.jpg",
+width: 320,
+height: 180
+},
+high: {
+url: "https://i.ytimg.com/vi/Eg86emJjbwk/hqdefault.jpg",
+width: 480,
+height: 360
+}
+},
+channelTitle: "FailArmy",
+liveBroadcastContent: "none"
+}
+}];
     // Compile an initial state
-    const preloadedState = {  };
+    const preloadedState = { videos };
 
     // Create a new Redux store instance
     const store = configureStore(preloadedState);
