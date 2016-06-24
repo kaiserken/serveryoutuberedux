@@ -16,6 +16,7 @@ import { Provider } from 'react-redux';
 import configureStore from '../common/store/configureStore';
 import App from '../common/containers/App';
 import { fetchCounter } from '../common/api/counter';
+import Axios from 'axios';
 
 const app = new Express();
 const port = 3000;
@@ -35,43 +36,81 @@ function handleRender(req, res) {
 
     // const params = qs.parse(req.query);
     //
-    // const counter = parseInt(params.counter, 10) || apiResult || 0;
-    const videos  = [
-{
-kind: "youtube#searchResult",
-etag: "'5g01s4-wS2b4VpScndqCYc5Y-8k/MnJ0eyS5rPdhmO-Q8dxraaCXdj8'",
-id: {
-kind: "youtube#video",
-videoId: "Eg86emJjbwk"
-},
-snippet: {
-publishedAt: "2016-06-21T16:30:00.000Z",
-channelId: "UCPDis9pjXuqyI7RYLJ-TTSA",
-title: "Dummy Dogs || 'Dog Fails' By FailArmy",
-description: "There's nothing funnier than seeing a man's best friend fail. They're always there for us, they love us, but sometimes they're not the smartest. Here are some of ...",
-thumbnails: {
-default: {
-url: "https://i.ytimg.com/vi/Eg86emJjbwk/default.jpg",
-width: 120,
-height: 90
-},
-medium: {
-url: "https://i.ytimg.com/vi/Eg86emJjbwk/mqdefault.jpg",
-width: 320,
-height: 180
-},
-high: {
-url: "https://i.ytimg.com/vi/Eg86emJjbwk/hqdefault.jpg",
-width: 480,
-height: 360
-}
-},
-channelTitle: "FailArmy",
-liveBroadcastContent: "none"
-}
-}];
+
+    // const data = Axios.get("https://www.googleapis.com/youtube/v3/search?part=snippet&q=dogs&type=video&key=AIzaSyCu8ySDCn0PaFXTAv70TdljI6mtPDlBfjk");
+    // console.log('data', data);
+    // const videos  = data.items;
+    // console.log("server videos", videos)
+    const selectedVideo =
+      {
+      kind: "youtube#searchResult",
+      etag: "'5g01s4-wS2b4VpScndqCYc5Y-8k/MnJ0eyS5rPdhmO-Q8dxraaCXdj8'",
+      id: {
+      kind: "youtube#video",
+      videoId: "Eg86emJjbwk"
+      },
+      snippet: {
+      publishedAt: "2016-06-21T16:30:00.000Z",
+      channelId: "UCPDis9pjXuqyI7RYLJ-TTSA",
+      title: "Dummy Dogs || 'Dog Fails' By FailArmy",
+      description: "There's nothing funnier than seeing a man's best friend fail. They're always there for us, they love us, but sometimes they're not the smartest. Here are some of ...",
+      thumbnails: {
+      default: {
+      url: "https://i.ytimg.com/vi/Eg86emJjbwk/default.jpg",
+      width: 120,
+      height: 90
+      },
+      medium: {
+      url: "https://i.ytimg.com/vi/Eg86emJjbwk/mqdefault.jpg",
+      width: 320,
+      height: 180
+      },
+      high: {
+      url: "https://i.ytimg.com/vi/Eg86emJjbwk/hqdefault.jpg",
+      width: 480,
+      height: 360
+      }
+      },
+      channelTitle: "FailArmy",
+      liveBroadcastContent: "none"
+      }
+      };
+    const videos = [
+      {
+      kind: "youtube#searchResult",
+      etag: "'5g01s4-wS2b4VpScndqCYc5Y-8k/MnJ0eyS5rPdhmO-Q8dxraaCXdj8'",
+      id: {
+      kind: "youtube#video",
+      videoId: "Eg86emJjbwk"
+      },
+      snippet: {
+      publishedAt: "2016-06-21T16:30:00.000Z",
+      channelId: "UCPDis9pjXuqyI7RYLJ-TTSA",
+      title: "Dummy Dogs || 'Dog Fails' By FailArmy",
+      description: "There's nothing funnier than seeing a man's best friend fail. They're always there for us, they love us, but sometimes they're not the smartest. Here are some of ...",
+      thumbnails: {
+      default: {
+      url: "https://i.ytimg.com/vi/Eg86emJjbwk/default.jpg",
+      width: 120,
+      height: 90
+      },
+      medium: {
+      url: "https://i.ytimg.com/vi/Eg86emJjbwk/mqdefault.jpg",
+      width: 320,
+      height: 180
+      },
+      high: {
+      url: "https://i.ytimg.com/vi/Eg86emJjbwk/hqdefault.jpg",
+      width: 480,
+      height: 360
+      }
+      },
+      channelTitle: "FailArmy",
+      liveBroadcastContent: "none"
+      }
+      }];
     // Compile an initial state
-    const preloadedState = { videos };
+    const preloadedState = { videos, selectedVideo };
 
     // Create a new Redux store instance
     const store = configureStore(preloadedState);
