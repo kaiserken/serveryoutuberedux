@@ -5,6 +5,8 @@ export default function(state=[], action){
 
   switch(action.type){
     case FETCH_VIDEOS:
+      //returns a new array with added videos each time
+      //could just return action.payload.data.items if we always only wanted 5 videos
       return action.payload.data.items.concat(state);
   }
 

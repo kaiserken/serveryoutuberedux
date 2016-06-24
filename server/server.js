@@ -2,7 +2,7 @@
 
 import path from 'path';
 import Express from 'express';
-import qs from 'qs';
+//import qs from 'qs';
 
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -29,11 +29,15 @@ app.use(webpackHotMiddleware(compiler));
 app.use(handleRender);
 
 function handleRender(req, res) {
-  fetchVideos(VideoResult => {
+  // search term for initial data load of videos
+  const term  = "coolest houses";
+  fetchVideos(term, VideoResult => {
 
     const videos  = VideoResult;
+    // set value of selectedVideo to first video on initial render
     const selectedVideo = videos[0];
     // Compile an initial state
+    // You can verify that data is loaded on server by changing preloadedState to an empty object
     const preloadedState = { videos, selectedVideo };
 
     // Create a new Redux store instance
@@ -54,14 +58,14 @@ function handleRender(req, res) {
     res.send(renderFullPage(html, finalState));
   });
 }
-
+// notice the whole return below is a template string  - hence the ${} for variables injected
 function renderFullPage(html, preloadedState) {
   return `
     <!doctype html>
     <html>
       <head>
-        <title>Redux Universal Example</title>
-
+        <title>Redux You Tube</title>
+        <link rel="stylesheet" href="style/style.css">
         <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
       </head>
       <body>
